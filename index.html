@@ -11,7 +11,6 @@
       --bg: #fdf2f8;
       --card: #ffffff;
       --text: #1f2937;
-      --muted: #6b7280;
       --whatsapp: #16a34a;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
@@ -22,7 +21,7 @@
       padding: 24px 16px;
       text-align: center;
     }
-    header h1 { font-size: 1.6rem; font-weight: 800; letter-spacing: 0.5px; }
+    header h1 { font-size: 1.6rem; font-weight: 800; }
     header p { font-size: 0.9rem; opacity: 0.92; margin-top: 6px; }
     .badge {
       display: inline-block;
@@ -164,3 +163,193 @@
 </head>
 <body>
 
+  <header>
+    <h1>Bestlady Fashions</h1>
+    <p>Trendy Outfits, Bags &amp; Heels at True Comrade Prices</p>
+    <span class="badge">Book with 50% Deposit via WhatsApp</span>
+  </header>
+
+  <div class="container">
+    <input type="text" id="searchInput" class="search-box" placeholder="Search dresses, tops, jeans, shoes..." />
+    <div class="categories" id="categoryBar"></div>
+    <div class="grid" id="productGrid"></div>
+  </div>
+
+  <div class="cart-bar">
+    <div class="cart-inner">
+      <div class="cart-summary" id="cartSummary">
+        Bag: 0 items | Total: KES 0<br />
+        <strong>Deposit (50%): KES 0</strong>
+      </div>
+      <div style="display:flex; gap:8px; align-items:center;">
+        <select id="paymentOption" class="pay-mode" onchange="updateCartUI()">
+          <option value="deposit">Pay 50% Deposit</option>
+          <option value="full">Pay Full Amount</option>
+        </select>
+        <button class="btn-wa" onclick="orderWhatsApp()">Order on WhatsApp</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const WHATSAPP_NUMBER = "254700000000";
+
+    // Built directly inside to guarantee it loads instantly without errors!
+    const allProducts = [
+      { id: 1, name: "Gold Plated Earring & Piercing Studs", category: "Jewelry", price: 250, image: "1794590809686.jpg" },
+      { id: 2, name: "Danlex Gold Women's Watch & Bracelet Set", category: "Watches", price: 950, image: "1794590812883.jpg" },
+      { id: 3, name: "Glam Leather-Strap Couple Watches", category: "Watches", price: 850, image: "1794590816073.jpg" },
+      { id: 4, name: "Mood the Cup Insulated Tumbler", category: "Accessories", price: 750, image: "1794590850792.jpg" },
+      { id: 5, name: "High-Waisted Casual Denim Shorts", category: "Denim", price: 550, image: "1794591118777.jpg" },
+      { id: 6, name: "Loewe Branded Designer Denim Shorts", category: "Denim", price: 650, image: "1794591122362.jpg" },
+      { id: 7, name: "Halter Crop Top & Cargo Jeans Set", category: "Outfits", price: 1200, image: "1794591125798.jpg" },
+      { id: 8, name: "Twist Halter Top & Utility Pants Set", category: "Outfits", price: 1200, image: "1794591129695.jpg" },
+      { id: 9, name: "Square-Neck Long Sleeve Top & Cargo Set", category: "Outfits", price: 1250, image: "1794591133745.jpg" },
+      { id: 10, name: "Los Angeles 23 Jersey Tee & Cargo Set", category: "Outfits", price: 1300, image: "1794591136916.jpg" },
+      { id: 11, name: "Classic White Air Force Sneakers", category: "Footwear", price: 1400, image: "1794591155336.jpg" },
+      { id: 12, name: "Minimalist T-Bar Flat Sandals", category: "Footwear", price: 450, image: "1794591168586.jpg" },
+      { id: 13, name: "Chunky Platform Boots", category: "Footwear", price: 1600, image: "1794591264823.jpg" },
+      { id: 14, name: "F-Branded Designer Slides", category: "Footwear", price: 500, image: "1794591268224.jpg" },
+      { id: 15, name: "Pearl-Adorned Bodycon Dress", category: "Dresses", price: 950, image: "IMG-20260925-WA0063.jpg" },
+      { id: 16, name: "Sparkling Sheer Overlay Dress", category: "Dresses", price: 1100, image: "IMG-20260925-WA0097.jpg" },
+      { id: 17, name: "Dior Logo Tee & Colorful Joggers", category: "Tracksuits", price: 1350, image: "IMG-20261014-WA0010.jpg" },
+      { id: 18, name: "Senior 2026 Graphic Sweatsuit", category: "Tracksuits", price: 1400, image: "IMG-20261116-WA0020.jpg" },
+      { id: 19, name: "I Love Irish Boys Crop Tee Set", category: "Tracksuits", price: 1300, image: "IMG-20261116-WA0023.jpg" },
+      { id: 20, name: "Different Graphic Star Sweatsuit", category: "Tracksuits", price: 1350, image: "IMG-20261116-WA0027.jpg" }
+    ];
+
+    let cart = {};
+    let activeCategory = "All";
+
+    function initStore() {
+      renderCategories();
+      renderProducts();
+    }
+
+    function renderCategories() {
+      const cats = ["All", ...new Set(allProducts.map(p => p.category))];
+      const bar = document.getElementById("categoryBar");
+      bar.innerHTML = cats.map(cat => `
+        <button class="cat-btn ${cat === activeCategory ? 'active' : ''}" onclick="setCategory('${cat}')">${cat}</button>
+      `).join("");
+    }
+
+    function setCategory(cat) {
+      activeCategory = cat;
+      renderCategories();
+      renderProducts();
+    }
+
+    function renderProducts() {
+      const query = document.getElementById("searchInput").value.toLowerCase();
+      const filtered = allProducts.filter(p => {
+        const matchCat = activeCategory === "All" || p.category === activeCategory;
+        const matchSearch = p.name.toLowerCase().includes(query) || p.category.toLowerCase().includes(query);
+        return matchCat && matchSearch;
+      });
+
+      const grid = document.getElementById("productGrid");
+      grid.innerHTML = filtered.map(p => {
+        const qty = cart[p.id] || 0;
+        const deposit = Math.ceil(p.price * 0.5);
+        const imgSrc = p.image.startsWith("images/") ? p.image : "images/" + p.image;
+        return `
+          <div class="card">
+            <img src="${imgSrc}" alt="${p.name}" loading="lazy" />
+            <div class="card-body">
+              <div>
+                <div class="card-cat">${p.category}</div>
+                <div class="card-title">${p.name}</div>
+                <div class="price-row">
+                  <span class="price">KES ${p.price.toLocaleString()}</span>
+                  <span class="deposit-tag">Deposit: KES ${deposit.toLocaleString()}</span>
+                </div>
+              </div>
+              <div class="qty-controls">
+                ${qty === 0
+                  ? `<button class="btn-add" onclick="changeQty(${p.id}, 1)">+ Add to Bag</button>`
+                  : `<div class="qty-box">
+                      <button onclick="changeQty(${p.id}, -1)">-</button>
+                      <span><strong>${qty}</strong></span>
+                      <button onclick="changeQty(${p.id}, 1)">+</button>
+                    </div>`
+                }
+              </div>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function changeQty(id, delta) {
+      cart[id] = (cart[id] || 0) + delta;
+      if (cart[id] <= 0) delete cart[id];
+      renderProducts();
+      updateCartUI();
+    }
+
+    function updateCartUI() {
+      let count = 0;
+      let total = 0;
+      for (const [id, qty] of Object.entries(cart)) {
+        const item = allProducts.find(p => p.id == id);
+        if (item) {
+          count += qty;
+          total += item.price * qty;
+        }
+      }
+      const deposit = Math.ceil(total * 0.5);
+      const mode = document.getElementById("paymentOption").value;
+      const dueNow = mode === "deposit" ? deposit : total;
+      const label = mode === "deposit" ? "Deposit (50%)" : "Full Pay";
+
+      document.getElementById("cartSummary").innerHTML = `
+        Bag: ${count} item${count === 1 ? "" : "s"} | Total: KES ${total.toLocaleString()}<br />
+        <strong>${label}: KES ${dueNow.toLocaleString()}</strong>
+      `;
+    }
+
+    function orderWhatsApp() {
+      const entries = Object.entries(cart);
+      if (entries.length === 0) {
+        alert("Please add at least one item to your bag first!");
+        return;
+      }
+
+      let lines = ["Hello *Bestlady Fashions*! I'd like to place an order:"];
+      let total = 0;
+
+      entries.forEach(([id, qty], index) => {
+        const item = allProducts.find(p => p.id == id);
+        if (item) {
+          const sub = item.price * qty;
+          total += sub;
+          lines.push(`${index + 1}. ${item.name} (x${qty}) - KES ${sub.toLocaleString()}`);
+        }
+      });
+
+      const mode = document.getElementById("paymentOption").value;
+      const deposit = Math.ceil(total * 0.5);
+      const balance = total - deposit;
+
+      lines.push("");
+      lines.push(`*Order Total:* KES ${total.toLocaleString()}`);
+      if (mode === "deposit") {
+        lines.push(`*Payment Plan:* 50% Deposit Booking`);
+        lines.push(`*Deposit to Pay Now:* KES ${deposit.toLocaleString()}`);
+        lines.push(`*Balance on Delivery/Pickup:* KES ${balance.toLocaleString()}`);
+      } else {
+        lines.push(`*Payment Plan:* Full Payment (KES ${total.toLocaleString()})`);
+      }
+      lines.push("");
+      lines.push("Please share your M-Pesa Till/Paybill/Number so I can send my deposit and confirm delivery!");
+
+      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(lines.join("\n"))}`;
+      window.open(url, "_blank");
+    }
+
+    document.getElementById("searchInput").addEventListener("input", renderProducts);
+    initStore();
+  </script>
+</body>
+</html>
