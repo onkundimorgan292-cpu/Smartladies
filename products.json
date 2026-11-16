@@ -4,139 +4,139 @@
     "name": "Gold Plated Earring & Piercing Studs",
     "category": "Jewelry",
     "price": 250,
-    "image": "images/1794590809686.jpg"
+    "image": "1794590809686.jpg"
   },
   {
     "id": 2,
     "name": "Danlex Gold Women's Watch & Bracelet Set",
     "category": "Watches",
     "price": 950,
-    "image": "images/1794590812883.jpg"
+    "image": "1794590812883.jpg"
   },
   {
     "id": 3,
     "name": "Glam Leather-Strap Couple Watches",
     "category": "Watches",
     "price": 850,
-    "image": "images/1794590816073.jpg"
+    "image": "1794590816073.jpg"
   },
   {
     "id": 4,
     "name": "'Mood the Cup' Insulated Tumbler",
     "category": "Accessories",
     "price": 750,
-    "image": "images/1794590850792.jpg"
+    "image": "1794590850792.jpg"
   },
   {
     "id": 5,
     "name": "High-Waisted Casual Denim Shorts",
     "category": "Denim",
     "price": 550,
-    "image": "images/1794591118777.jpg"
+    "image": "1794591118777.jpg"
   },
   {
     "id": 6,
     "name": "Loewe Branded Designer Denim Shorts",
     "category": "Denim",
     "price": 650,
-    "image": "images/1794591122362.jpg"
+    "image": "1794591122362.jpg"
   },
   {
     "id": 7,
     "name": "Halter Crop Top & Cargo Jeans Set",
     "category": "Outfits",
     "price": 1200,
-    "image": "images/1794591125798.jpg"
+    "image": "1794591125798.jpg"
   },
   {
     "id": 8,
     "name": "Twist Halter Top & Utility Pants Set",
     "category": "Outfits",
     "price": 1200,
-    "image": "images/1794591129695.jpg"
+    "image": "1794591129695.jpg"
   },
   {
     "id": 9,
     "name": "Square-Neck Long Sleeve Top & Cargo Set",
     "category": "Outfits",
     "price": 1250,
-    "image": "images/1794591133745.jpg"
+    "image": "1794591133745.jpg"
   },
   {
     "id": 10,
     "name": "Los Angeles 23 Jersey Tee & Cargo/Shorts Set",
     "category": "Outfits",
     "price": 1300,
-    "image": "images/1794591136916.jpg"
+    "image": "1794591136916.jpg"
   },
   {
     "id": 11,
     "name": "Classic White Air Force Sneakers",
     "category": "Footwear",
     "price": 1400,
-    "image": "images/1794591155336.jpg"
+    "image": "1794591155336.jpg"
   },
   {
     "id": 12,
     "name": "Minimalist T-Bar Flat Sandals",
     "category": "Footwear",
     "price": 450,
-    "image": "images/1794591168586.jpg"
+    "image": "1794591168586.jpg"
   },
   {
     "id": 13,
     "name": "Chunky Platform Boots",
     "category": "Footwear",
     "price": 1600,
-    "image": "images/1794591264823.jpg"
+    "image": "1794591264823.jpg"
   },
   {
     "id": 14,
     "name": "F-Branded Designer Slides",
     "category": "Footwear",
     "price": 500,
-    "image": "images/1794591268224.jpg"
+    "image": "1794591268224.jpg"
   },
   {
     "id": 15,
     "name": "Pearl-Adorned Bodycon Dress",
     "category": "Dresses",
     "price": 950,
-    "image": "images/IMG-20260925-WA0063.jpg"
+    "image": "IMG-20260925-WA0063.jpg"
   },
   {
     "id": 16,
     "name": "Sparkling Sheer Overlay Dress",
     "category": "Dresses",
     "price": 1100,
-    "image": "images/IMG-20260925-WA0097.jpg"
+    "image": "IMG-20260925-WA0097.jpg"
   },
   {
     "id": 17,
     "name": "Dior Logo Tee & Colorful Joggers Set",
     "category": "Tracksuits",
     "price": 1350,
-    "image": "images/IMG-20261014-WA0010.jpg"
+    "image": "IMG-20261014-WA0010.jpg"
   },
   {
     "id": 18,
     "name": "'Senior 2026' Graphic Sweatsuit",
     "category": "Tracksuits",
     "price": 1400,
-    "image": "images/IMG-20261116-WA0020.jpg"
+    "image": "IMG-20261116-WA0020.jpg"
   },
   {
     "id": 19,
     "name": "'I Love Irish Boys' Crop Tee & Sweatpants",
     "category": "Tracksuits",
     "price": 1300,
-    "image": "images/IMG-20261116-WA0023.jpg"
+    "image": "IMG-20261116-WA0023.jpg"
   },
   {
     "id": 20,
     "name": "'Different' Graphic Star Sweatsuit",
     "category": "Tracksuits",
     "price": 1350,
-    "image": "images/IMG-20261116-WA0027.jpg"
+    "image": "IMG-20261116-WA0027.jpg"
   }
 ]
