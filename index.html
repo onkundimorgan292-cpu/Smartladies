@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bestlady Fashions | Comrade Friendly Styles</title>
+  <style>
+    :root {
+      --primary: #be185d;
+      --primary-dark: #9d174d;
+      --bg: #fdf2f8;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --whatsapp: #16a34a;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
+    body { background: var(--bg); color: var(--text); padding-bottom: 130px; }
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: #fff;
+      padding: 24px 16px;
+      text-align: center;
+    }
+    header h1 { font-size: 1.6rem; font-weight: 800; letter-spacing: 0.5px; }
+    header p { font-size: 0.9rem; opacity: 0.92; margin-top: 6px; }
+    .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      margin-top: 10px;
+      font-weight: 600;
+    }
+    .container { max-width: 960px; margin: 0 auto; padding: 16px; }
+    .search-box {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #fBCFE8;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      outline: none;
+      margin-bottom: 12px;
+      background: #fff;
+    }
+    .categories {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 12px;
+      margin-bottom: 12px;
+    }
+    .cat-btn {
+      background: #fff;
+      border: 1px solid #f9a8d4;
+      color: var(--primary);
+      padding: 7px 16px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .cat-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 14px;
+    }
+    .card {
+      background: var(--card);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+      display: flex;
+      flex-direction: column;
+    }
+    .card img {
+      width: 100%;
+      height: 185px;
+      object-fit: cover;
+      background: #fce7f3;
+    }
+    .card-body { padding: 12px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+    .card-cat { font-size: 0.72rem; text-transform: uppercase; color: var(--primary); font-weight: 700; }
+    .card-title { font-size: 0.95rem; font-weight: 700; margin: 4px 0; }
+    .price-row { margin: 6px 0 10px; }
+    .price { font-size: 1rem; font-weight: 800; color: #111827; }
+    .deposit-tag { font-size: 0.76rem; color: var(--whatsapp); font-weight: 600; display: block; }
+    .qty-controls { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .btn-add {
+      width: 100%;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 9px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+    .qty-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      background: #fdf2f8;
+      border: 1px solid #f9a8d4;
+      border-radius: 8px;
+      padding: 4px 8px;
+    }
+    .qty-box button {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .cart-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #111827;
+      color: #fff;
+      padding: 12px 16px;
+      box-shadow: 0 -4px 16px rgba(0,0,0,0.18);
+      z-index: 100;
+    }
+    .cart-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .cart-summary { font-size: 0.88rem; line-height: 1.35; }
+    .cart-summary strong { color: #f9a8d4; font-size: 1rem; }
+    .pay-mode {
+      background: #1f2937;
+      color: #fff;
+      border: 1px solid #374151;
+      padding: 7px 10px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+    }
+    .btn-wa {
+      background: var(--whatsapp);
+      color: #fff;
+      border: none;
+      padding: 11px 16px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Bestlady Fashions</h1>
+    <p>Trendy Outfits, Bags &amp; Heels at True Comrade Prices</p>
+    <span class="badge">Book with 50% Deposit via WhatsApp</span>
+  </header>
+
+  <div class="container">
+    <input type="text" id="searchInput" class="search-box" placeholder="Search dresses, tops, jeans, bags..." />
+    <div class="categories" id="categoryBar"></div>
+    <div class="grid" id="productGrid"></div>
+  </div>
+
+  <div class="cart-bar">
+    <div class="cart-inner">
+      <div class="cart-summary" id="cartSummary">
+        Bag: 0 items | Total: KES 0<br />
+        <strong>Deposit (50%): KES 0</strong>
+      </div>
+      <div style="display:flex; gap:8px; align-items:center;">
+        <select id="paymentOption" class="pay-mode" onchange="updateCartUI()">
+          <option value="deposit">Pay 50% Deposit</option>
+          <option value="full">Pay Full Amount</option>
+        </select>
+        <button class="btn-wa" onclick="orderWhatsApp()">Order on WhatsApp</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // REPLACE WITH YOUR WHATSAPP NUMBER (e.g., 254712345678)
+    const WHATSAPP_NUMBER = "254700000000";
+
+    let allProducts = [];
+    let cart = {};
+    let activeCategory = "All";
+
+    async function loadProducts() {
+      try {
+        const res = await fetch("products.json");
+        allProducts = await res.json();
+        renderCategories();
+        renderProducts();
+      } catch (err) {
+        document.getElementById("productGrid").innerHTML = "<p>Could not load items. Check products.json.</p>";
+      }
+    }
+
+    function renderCategories() {
+      const cats = ["All", ...new Set(allProducts.map(p => p.category))];
+      const bar = document.getElementById("categoryBar");
+      bar.innerHTML = cats.map(cat => `
+        <button class="cat-btn ${cat === activeCategory ? 'active' : ''}" onclick="setCategory('${cat}')">${cat}</button>
+      `).join("");
+    }
+
+    function setCategory(cat) {
+      activeCategory = cat;
+      renderCategories();
+      renderProducts();
+    }
+
+    function renderProducts() {
+      const query = document.getElementById("searchInput").value.toLowerCase();
+      const filtered = allProducts.filter(p => {
+        const matchCat = activeCategory === "All" || p.category === activeCategory;
+        const matchSearch = p.name.toLowerCase().includes(query) || p.category.toLowerCase().includes(query);
+        return matchCat && matchSearch;
+      });
+
+      const grid = document.getElementById("productGrid");
+      grid.innerHTML = filtered.map(p => {
+        const qty = cart[p.id] || 0;
+        const deposit = Math.ceil(p.price * 0.5);
+        return `
+          <div class="card">
+            <img src="${p.image}" alt="${p.name}" loading="lazy" />
+            <div class="card-body">
+              <div>
+                <div class="card-cat">${p.category}</div>
+                <div class="card-title">${p.name}</div>
+                <div class="price-row">
+                  <span class="price">KES ${p.price.toLocaleString()}</span>
+                  <span class="deposit-tag">Deposit: KES ${deposit.toLocaleString()}</span>
+                </div>
+              </div>
+              <div class="qty-controls">
+                ${qty === 0
+                  ? `<button class="btn-add" onclick="changeQty(${p.id}, 1)">+ Add to Bag</button>`
+                  : `<div class="qty-box">
+                      <button onclick="changeQty(${p.id}, -1)">-</button>
+                      <span><strong>${qty}</strong></span>
+                      <button onclick="changeQty(${p.id}, 1)">+</button>
+                    </div>`
+                }
+              </div>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function changeQty(id, delta) {
+      cart[id] = (cart[id] || 0) + delta;
+      if (cart[id] <= 0) delete cart[id];
+      renderProducts();
+      updateCartUI();
+    }
+
+    function updateCartUI() {
+      let count = 0;
+      let total = 0;
+      for (const [id, qty] of Object.entries(cart)) {
+        const item = allProducts.find(p => p.id == id);
+        if (item) {
+          count += qty;
+          total += item.price * qty;
+        }
+      }
+      const deposit = Math.ceil(total * 0.5);
+      const mode = document.getElementById("paymentOption").value;
+      const dueNow = mode === "deposit" ? deposit : total;
+      const label = mode === "deposit" ? "Deposit (50%)" : "Full Pay";
+
+      document.getElementById("cartSummary").innerHTML = `
+        Bag: ${count} item${count === 1 ? "" : "s"} | Total: KES ${total.toLocaleString()}<br />
+        <strong>${label}: KES ${dueNow.toLocaleString()}</strong>
+      `;
+    }
+
+    function orderWhatsApp() {
+      const entries = Object.entries(cart);
+      if (entries.length === 0) {
+        alert("Please add at least one outfit or item to your bag first!");
+        return;
+      }
+
+      let lines = ["Hello *Bestlady Fashions*! I'd like to place an order:"];
+      let total = 0;
+
+      entries.forEach(([id, qty], index) => {
+        const item = allProducts.find(p => p.id == id);
+        if (item) {
+          const sub = item.price * qty;
+          total += sub;
+          lines.push(`${index + 1}. ${item.name} (x${qty}) - KES ${sub.toLocaleString()}`);
+        }
+      });
+
+      const mode = document.getElementById("paymentOption").value;
+      const deposit = Math.ceil(total * 0.5);
+      const balance = total - deposit;
+
+      lines.push("");
+      lines.push(`*Order Total:* KES ${total.toLocaleString()}`);
+      if (mode === "deposit") {
+        lines.push(`*Payment Plan:* 50% Deposit Booking`);
+        lines.push(`*Deposit to Pay Now:* KES ${deposit.toLocaleString()}`);
+        lines.push(`*Balance on Delivery/Pickup:* KES ${balance.toLocaleString()}`);
+      } else {
+        lines.push(`*Payment Plan:* Full Payment (KES ${total.toLocaleString()})`);
+      }
+      lines.push("");
+      lines.push("Please share your M-Pesa Till/Paybill/Number so I can send my deposit and confirm delivery!");
+
+      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(lines.join("\n"))}`;
+      window.open(url, "_blank");
+    }
+
+    document.getElementById("searchInput").addEventListener("input", renderProducts);
+    loadProducts();
+  </script>
+</body>
+</html>
