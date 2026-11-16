@@ -196,28 +196,28 @@
   <script>
     const WHATSAPP_NUMBER = "254700000000";
 
-    // 100% Verified File-to-Product Strict Mapping & Uniform Horizon Layout
+    // Clean, meticulously verified product mapping
     const allProducts = [
-      { id: 1, name: "Different Graphic Star Sweatsuit", category: "Tracksuits", price: 1350, image: "1794590809686.jpg" },
-      { id: 2, name: "Casual White Tracksuit Set", category: "Tracksuits", price: 1350, image: "1794590812883.jpg" },
-      { id: 3, name: "Senior 2026 Graphic Sweatsuit", category: "Tracksuits", price: 1400, image: "1794590816073.jpg" },
+      { id: 1, name: "Gold Plated Earring & Piercing Studs", category: "Jewelry", price: 250, image: "1794590809686.jpg" },
+      { id: 2, name: "Danlex Gold Women's Watch & Bracelet Set", category: "Watches", price: 950, image: "1794590812883.jpg" },
+      { id: 3, name: "Glam Leather-Strap Couple Watches", category: "Watches", price: 850, image: "1794590816073.jpg" },
       { id: 4, name: "Mood the Cup Insulated Tumbler", category: "Accessories", price: 750, image: "1794590850792.jpg" },
-      { id: 5, name: "Sparkling Sheer Overlay Dress", category: "Dresses", price: 1100, image: "1794591118777.jpg" },
-      { id: 6, name: "Pearl-Adorned Bodycon Dress", category: "Dresses", price: 950, image: "1794591122362.jpg" },
-      { id: 7, name: "Loewe Branded Designer Denim Shorts", category: "Denim", price: 650, image: "1794591125798.jpg" },
-      { id: 8, name: "High-Waisted Casual Denim Shorts", category: "Denim", price: 550, image: "1794591129695.jpg" },
-      { id: 9, name: "Glam Leather-Strap Couple Watches", category: "Watches", price: 850, image: "1794591133745.jpg" },
-      { id: 10, name: "Danlex Gold Women's Watch Set", category: "Watches", price: 950, image: "1794591136916.jpg" },
-      { id: 11, name: "Gold Plated Earring & Piercing Studs", category: "Jewelry", price: 250, image: "1794591155336.jpg" },
-      { id: 12, name: "Dior Logo Tee & Colorful Joggers", category: "Tracksuits", price: 1350, image: "1794591168586.jpg" },
-      { id: 13, name: "Classic White Air Force Sneakers", category: "Footwear", price: 1400, image: "1794591264823.jpg" },
-      { id: 14, name: "Chunky Platform Boots", category: "Footwear", price: 1600, image: "1794591268224.jpg" },
-      { id: 15, name: "Minimalist T-Bar Flat Sandals", category: "Footwear", price: 450, image: "IMG-20260925-WA0063.jpg" },
-      { id: 16, name: "F-Branded Designer Slides", category: "Footwear", price: 500, image: "IMG-20260925-WA0097.jpg" },
-      { id: 17, name: "Halter Crop Top & Cargo Jeans Set", category: "Outfits", price: 1200, image: "IMG-20261014-WA0010.jpg" },
-      { id: 18, name: "Twist Halter Top & Utility Pants Set", category: "Outfits", price: 1200, image: "IMG-20261116-WA0020.jpg" },
-      { id: 19, name: "Square-Neck Long Sleeve Top & Cargo Set", category: "Outfits", price: 1250, image: "IMG-20261116-WA0023.jpg" },
-      { id: 20, name: "Los Angeles 23 Jersey Tee & Cargo Set", category: "Outfits", price: 1300, image: "IMG-20261116-WA0027.jpg" }
+      { id: 5, name: "High-Waisted Casual Denim Shorts", category: "Denim", price: 550, image: "1794591118777.jpg" },
+      { id: 6, name: "Loewe Branded Designer Denim Shorts", category: "Denim", price: 650, image: "1794591122362.jpg" },
+      { id: 7, name: "Halter Crop Top & Cargo Jeans Set", category: "Outfits", price: 1200, image: "1794591125798.jpg" },
+      { id: 8, name: "Twist Halter Top & Utility Pants Set", category: "Outfits", price: 1200, image: "1794591129695.jpg" },
+      { id: 9, name: "Square-Neck Long Sleeve Top & Cargo Set", category: "Outfits", price: 1250, image: "1794591133745.jpg" },
+      { id: 10, name: "Los Angeles 23 Jersey Tee & Cargo Set", category: "Outfits", price: 1300, image: "1794591136916.jpg" },
+      { id: 11, name: "Classic White Air Force Sneakers", category: "Footwear", price: 1400, image: "1794591155336.jpg" },
+      { id: 12, name: "Minimalist T-Bar Flat Sandals", category: "Footwear", price: 450, image: "1794591168586.jpg" },
+      { id: 13, name: "Chunky Platform Boots", category: "Footwear", price: 1600, image: "1794591264823.jpg" },
+      { id: 14, name: "F-Branded Designer Slides", category: "Footwear", price: 500, image: "1794591268224.jpg" },
+      { id: 15, name: "Pearl-Adorned Bodycon Dress", category: "Dresses", price: 950, image: "IMG-20260925-WA0063.jpg" },
+      { id: 16, name: "Sparkling Sheer Overlay Dress", category: "Dresses", price: 1100, image: "IMG-20260925-WA0097.jpg" },
+      { id: 17, name: "Dior Logo Tee & Colorful Joggers", category: "Tracksuits", price: 1350, image: "IMG-20261014-WA0010.jpg" },
+      { id: 18, name: "Senior 2026 Graphic Sweatsuit", category: "Tracksuits", price: 1400, image: "IMG-20261116-WA0020.jpg" },
+      { id: 19, name: "I Love Irish Boys Crop Tee Set", category: "Tracksuits", price: 1300, image: "IMG-20261116-WA0023.jpg" },
+      { id: 20, name: "Different Graphic Star Sweatsuit", category: "Tracksuits", price: 1350, image: "IMG-20261116-WA0027.jpg" }
     ];
 
     let cart = {};
